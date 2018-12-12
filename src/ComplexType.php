@@ -15,9 +15,9 @@ abstract class ComplexType
 
     /** @var array  */
     protected $errors = [];
-//TODO what to do about collections() since I want it to be a generic package
-    /** @var \Illuminate\Support\Collection  */
-    protected $propertyValues;
+
+    /** @var array  */
+    protected $propertyValues = [];
 
     /** @var array  */
     protected $propertyKeys = [];
@@ -28,7 +28,7 @@ abstract class ComplexType
     public function __construct(array $values)
     {
         $this->values = $values;
-        $this->propertyValues = collect([]);
+        $this->propertyValues = [];
 
         $this->initialize();
     }
@@ -40,8 +40,7 @@ abstract class ComplexType
      */
     public function toArray()
     {
-//TODO how to handle this...?
-        return $this->propertyValues->toArray();
+        return $this->propertyValues;
     }
 
     /**
@@ -61,9 +60,8 @@ abstract class ComplexType
                     $this->errors[] = $e->getMessage();
                 }
 
-                $propertyValue = $isComplexType ? $this->createComplexType($key)->toArray() : $value;
-//TODO collection?
-                $this->propertyValues->put($key, $propertyValue);
+                $propertyValue = $isComplexType ? $this->createComplexType($key) : $value;
+                $this->propertyValues[$key] = $propertyValue;
             }
         }
     }
