@@ -15,7 +15,7 @@ abstract class Consumer
      *
      * @param \SoapClient $client
      */
-    public function __construct(SoapClient $client)
+    public function __construct($client)
     {
         $this->client = $client;
     }
@@ -23,8 +23,8 @@ abstract class Consumer
     /**
      * Call the SOAP method
      *
-     * @param $method
-     * @param $parameters
+     * @param string $method
+     * @param array $parameters
      *
      * @return mixed
      * @throws SoapMethodDoesNotExist

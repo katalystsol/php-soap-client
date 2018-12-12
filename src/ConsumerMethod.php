@@ -30,7 +30,7 @@ abstract class ConsumerMethod
      *
      * @param SoapClient $client
      */
-    public function __construct(SoapClient $client)
+    public function __construct($client)
     {
         $this->client = $client;
         $this->setSoapHeaders();
