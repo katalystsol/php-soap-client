@@ -53,9 +53,27 @@ abstract class ComplexType
 
         foreach ($this->values as $key => $value) {
             if (in_array($key, $this->propertyKeys)) {
-                $this->propertyValues[$key] = $this->isComplexType($key) ? $this->createComplexType($key) : $value;
+                $this->propertyValues[$key] = $this->setValue($key, $value);
             }
         }
+    }
+
+    /**
+     * Set the value for the key
+     *
+     * @param string $key
+     * @param $value
+     *
+     * @return array
+     */
+    protected function setValue($key, $value)
+    {
+        if ($this->isComplexType($key)) {
+            $complexType = $this->createComplexType($key);
+            return $complexType->toArray();
+        }
+
+        return $value;
     }
 
     /**
