@@ -127,12 +127,6 @@ class ClsCreditCard extends ComplexType
 
 - See the tests for more examples.
 
-## TODOs
-- should I include psr/log middleware?
-- finish writing the tests
-- write the documentation
-
-
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
