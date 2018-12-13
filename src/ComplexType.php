@@ -53,14 +53,7 @@ abstract class ComplexType
 
         foreach ($this->values as $key => $value) {
             if (in_array($key, $this->propertyKeys)) {
-                try {
-                    $isComplexType = $this->isComplexType($key);
-                } catch (SoapComplexTypeNotConfigured $e) {
-                    $this->errors[] = $e->getMessage();
-                }
-
-                $propertyValue = $isComplexType ? $this->createComplexType($key) : $value;
-                $this->propertyValues[$key] = $propertyValue;
+                $this->propertyValues[$key] = $this->isComplexType($key) ? $this->createComplexType($key) : $value;
             }
         }
     }
