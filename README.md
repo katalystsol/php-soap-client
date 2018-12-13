@@ -45,6 +45,64 @@ It requires the following PHP extensions:
 
 under development
 
+### Example SOAP Method class
+
+```php
+use Katalystsol\PhpSoapClient\ConsumerMethod;
+
+class GetBookingPolicies extends ConsumerMethod
+{
+    protected $requiredParameters = [
+        'strUserId',
+        'strPassword',
+        'strCOID',
+    ];
+
+    protected $optionalParameters = [
+        'strProperty',
+    ];
+}
+
+```
+
+### Example Complex Type
+
+This would be a credit card class. It would also reference a separate complex type class "ClsAddress".
+
+```php
+use Katalystsol\PhpSoapClient\ComplexType;
+
+class ClsCreditCard extends ComplexType
+{
+    protected function setPropertyKeys()
+    {
+        $this->propertyKeys = [
+            'strToken',
+            'strCCType',
+            'intExpMonth',
+            'intExpYear',
+            'strName',
+            'objBillingAddress',
+            'strEmail',
+        ];
+    }
+
+    protected function setComplexTypes()
+    {
+        $this->complexTypes = [
+            'objBillingAddress' => ClsAddress::class,
+        ];
+    }
+
+    protected function setComplexTypeClassName()
+    {
+        $this->complexTypeClassName = get_class();
+    }
+}
+```
+
+- See the tests for more examples.
+
 ## TODOs
 - should I include psr/log middleware?
 - finish writing the tests
