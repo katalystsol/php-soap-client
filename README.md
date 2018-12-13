@@ -43,9 +43,30 @@ It requires the following PHP extensions:
 
 ## Documentation
 
-under development
+Constructive feedback is always welcome...
 
-### Example Usage (WIP)
+### Example Usage
+To use the class, you would:
+
+1. Instantiate the client
+2. Set up the parameters to pass to the method
+3. Call the method to return the response
+
+```php
+$wdsl = 'https://secure.instantsoftwareonline.com/StayUSA/ChannelPartners/wsWeblinkPlusAPI.asmx?WSDL';
+$soapClientOptions = [
+    'trace' => true,
+];
+$client = new SoapClientLogger(new \SoapClient($wdsl, $soapClientOptions));
+
+$params = [
+    'strUserId' => 'testUserId',
+    'strPassword' => 'testPassword',
+    'strCOID' => '1234',
+];
+
+$response = (new Consumer($client))->getBookingPolicies($params);
+```
 
 
 ### Example SOAP Method class
