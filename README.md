@@ -9,6 +9,9 @@ migrate that code to be a simple-to-use, generic SOAP client.
 * Create a simple approach to interacting with a SOAP API
 * Create a Class for each API endpoint method that only requires minimal data parameters for required and optional parameters.
 * Have ability to support complex types / objects.
+* Adhere as closely as possible to the Single Responsibility principle.
+    - Each SOAP API endpoint/method will be its own Class, which configures the required, optional parameters and/or 
+    complex types. It should only change if the SOAP API changes.
 
 This package is compliant with [PSR-1], [PSR-2] and [PSR-4]. If you notice compliance oversights,
 please send a patch via pull request.
@@ -33,13 +36,19 @@ The following versions of PHP are supported by this version.
 * PHP 7.2
 * PHP 7.3
 
+It requires the following PHP extensions:
+* JSON
+* SimpleXML
+* SOAP
+
 ## Documentation
 
 under development
 
 ## TODOs
 - should I include psr/log middleware?
-- write the tests
+- finish writing the tests
+- write the documentation
 
 
 ## License
