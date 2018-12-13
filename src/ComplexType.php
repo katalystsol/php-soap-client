@@ -71,28 +71,8 @@ abstract class ComplexType
      * @param string $propertyKey
      *
      * @return bool
-     * @throws SoapComplexTypeNotConfigured
      */
     protected function isComplexType($propertyKey)
-    {
-        $isComplexType = strpos($propertyKey, 'obj') === 0;
-
-        if ($isComplexType && !$this->isComplexTypeConfigured($propertyKey)) {
-            $errorMessage = $propertyKey.' not configured for '.$this->complexTypeClassName;
-            throw new SoapComplexTypeNotConfigured($errorMessage);
-        }
-
-        return $isComplexType;
-    }
-
-    /**
-     * Check if the complex type is configured in the child class
-     *
-     * @param string $propertyKey
-     *
-     * @return bool
-     */
-    protected function isComplexTypeConfigured($propertyKey)
     {
         return array_key_exists($propertyKey, $this->complexTypes);
     }
