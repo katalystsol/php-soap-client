@@ -28,7 +28,6 @@ abstract class ComplexType
     public function __construct(array $values)
     {
         $this->values = $values;
-        $this->propertyValues = [];
 
         $this->initialize();
     }
