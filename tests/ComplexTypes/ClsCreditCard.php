@@ -18,6 +18,7 @@ class ClsCreditCard extends ComplexType
         $this->propertyKeys = [
             'strToken',
             'strCCType',
+            'strCCNumber',
             'intExpMonth',
             'intExpYear',
             'strName',
